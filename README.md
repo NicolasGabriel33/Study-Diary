@@ -1,2 +1,2 @@
 # Study-Diary
-Diary for programming studies
+Projeto de estudo
