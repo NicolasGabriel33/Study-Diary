@@ -1,12 +1,16 @@
-class Diary
+class StudyDiary
+
     require_relative 'study-items'
-
-    attr_accessor :option
-    
-    def initialize (option)
-        @option = option 
+    require_relative 'study-category'
+    attr_accessor :option, :tema, :categoria, :busca
+        
+    def initialize (option, tema, categoria, busca)
+        @option = option
+        @tema = tema
+        @categoria = categoria
+        @busca = busca 
     end
-
+    
     while @option != 4
         puts "  \nBem-vindo ao diário de estudos! Seu companheiro para estudar!"
         puts "  [1] Cadastrar um item para estudar."
@@ -26,14 +30,14 @@ class Diary
 
         if @option == 1
             puts "\n Por favor, digite o tema de estudos: "
-            tema = gets.chomp()
+            @tema = gets.chomp()
             puts "Agora a categoria de estudo."
             puts "[1] Ruby"
             puts "[2] Rails"
             puts "[3] HTML"
-            categoria = gets.chomp()
-            #StudyItem.new(tema,categoria)
-            puts "Item #{tema} categoria #{categoria} cadastrado com sucesso!"
+            @categoria = gets.chomp().to_i
+            item = StudyItem.new(@tema,@categoria)
+            puts "Item #{item.tema} da categoria #{item.lingua} cadastrado com sucesso!"
             print "pressione ENTER para continuar."
             STDIN.gets
         end
