@@ -51,8 +51,19 @@ class StudyDiary
         if @option == 3
             puts "Digite a palavra que deseja procurar:"
             busca = gets.chomp()
-            #função de busca
-            puts "Foi encontrado #numero# item com a palavra #{busca}"
+            @resultado = []
+            
+            $lista_estudos.each_with_index do |item, i| 
+                if item.include? busca
+
+                @resultado << "#{i+1} - #{item}"
+                
+            end
+                             
+            end
+            puts "#{@resultado.size} resultado(s) encontrado(s) com #{busca}"
+            puts "Posição - Titulo - Linguagem"
+            puts @resultado
             print "pressione ENTER para continuar."
             STDIN.gets
         end
