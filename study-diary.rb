@@ -1,14 +1,11 @@
+$lista_estudos = []
 class StudyDiary
 
     require_relative 'study-items'
     require_relative 'study-category'
-    attr_accessor :option, :tema, :categoria, :busca
+    
         
-    def initialize (option, tema, categoria, busca)
-        @option = option
-        @tema = tema
-        @categoria = categoria
-        @busca = busca 
+    def initialize ()
     end
     
     while @option != 4
@@ -36,15 +33,17 @@ class StudyDiary
             puts "[2] Rails"
             puts "[3] HTML"
             @categoria = gets.chomp().to_i
-            item = StudyItem.new(@tema,@categoria)
-            puts "Item #{item.tema} da categoria #{item.lingua} cadastrado com sucesso!"
+            item = StudyItem.listagem(@tema,@categoria)
+            puts "Item #{item[0]} da categoria #{item[1]} cadastrado com sucesso!"
+            
+            $lista_estudos << StudyItem.cadastro(item)
             print "pressione ENTER para continuar."
             STDIN.gets
         end
 
         if @option == 2
             puts "Segue lista de itens cadastrados:"
-            #puts lista de cadastrados
+            $lista_estudos.each {|item| puts item}
             print "pressione ENTER para continuar."
             STDIN.gets
         end

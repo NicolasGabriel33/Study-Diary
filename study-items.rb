@@ -1,13 +1,21 @@
 class StudyItem
+    
+    attr_accessor :tema, :categoria, :lingua, :lista_estudos
 
-    attr_accessor :tema, :categoria, :solicitaçao_cadastro, :lingua, :lista_estudos
+    def initialize (cadastrado:[])
+        @cadastrados = cadastrado
+    end
 
-    def initialize (tema, categoria, solicitaçao_cadastro:'Vazia', lingua:"")
+    def self.listagem(tema, categoria)
         @tema = tema
         @categoria = StudyCategory.new(categoria)
         @lingua = @categoria.linguagem
-        @solicitaçao_cadastro = "#{@tema} - #{@lingua}"
-    
+        [@tema, @lingua]
+    end
+
+    def self.cadastro(item)
+        StudyItem.new
+        @cadastrados =  "#{item[0]} - #{item[1]}"
     end
 
 end
