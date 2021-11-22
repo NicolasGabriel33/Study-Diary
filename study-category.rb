@@ -13,4 +13,7 @@ class StudyCategory
             @linguagem = "Linguagem Indefinida"
         end
     end
+    def self.linguagem()
+        @linguagem        
+    end
 end
