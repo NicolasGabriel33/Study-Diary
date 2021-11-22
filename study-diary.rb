@@ -91,6 +91,36 @@ class StudyDiary
             STDIN.gets
         end
 
+        if @option == 5
+            @tamanho_lista = $lista_estudos.size 
+            if @tamanho_lista > 0
+                puts "Por favor selecione, da lista, a linha que deseja apagar."
+                $lista_estudos.each_with_index {|item, index| puts "#{index+1} - #{item}"}
+                print "Apagar linha:"
+                linha = gets.chomp().to_i
+                delete = linha - 1
+                if delete<@tamanho_lista && 0<= delete
+                    deletar=$lista_estudos[delete]
+                    puts "Deseja realmente apagar #{deletar}? (y/n)"
+                    confirmacao = gets.chomp()
+                    if confirmacao == "y"
+                        $lista_estudos.delete(deletar)
+                        puts "Item apagado com sucesso."
+                    else
+                        puts "Item não apagado."
+                    end       
+                    print "pressione ENTER para continuar."
+                    STDIN.gets
+                else
+                    puts "Linha inválida, tente novamente."
+                end
+            else
+                puts "Lista Vazia."
+                print "pressione ENTER para continuar."
+                STDIN.gets
+            end
+        end
+
         if @option == 6
             puts "Obrigado por usar o Diário de Estudos!"
         end
