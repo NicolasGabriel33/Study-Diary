@@ -1,7 +1,8 @@
 $lista_estudos = []
+#$lista_estudos << File.foreach("Studylist.txt") {|line| puts line}
 class StudyDiary
     require_relative 'study-items'
-    require_relative 'study-category'
+  require_relative 'study-category'
     
     def initialize ()
     end
@@ -35,15 +36,14 @@ class StudyDiary
             @categoria = gets.chomp().to_i
             item = StudyItem.listagem(@tema,@categoria)
             puts "Item #{item[0]} da categoria #{item[1]} cadastrado com sucesso!"
-            
-            $lista_estudos << StudyItem.cadastro(item)
+            $lista_estudos << StudyItem.cadastro(item).to_s
             print "pressione ENTER para continuar."
             STDIN.gets
         end
 
         if @option == 2
             puts "Segue lista de itens cadastrados:"
-            $lista_estudos.each {|item| puts item}
+            puts $lista_estudos
             print "pressione ENTER para continuar."
             STDIN.gets
         end
@@ -123,6 +123,7 @@ class StudyDiary
 
         if @option == 6
             puts "Obrigado por usar o Diário de Estudos!"
+            File.open("StudyList.txt", "w") {|h| h.write "#{$lista_estudos}"}
         end
     end
 end
